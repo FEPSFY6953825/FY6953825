@@ -218,43 +218,34 @@
  <!-- //////////////////////////////////////////////////////////////////////////////// -->
   <!-- ////////////////////////////// Word count function ////////////////////////////// -->
   <!-- //////////////////////////////////////////////////////////////////////////////// -->
+<!-- Placeholder for total word count -->
 <p id="totalWordCount"></p>
 <hr>
-
 <script>
-  // Function to count words inside all <p> tags within a section
-  function countWordsInSection(sectionId) {
-    const section = document.getElementById(sectionId);
-    if (!section) return 0;
-
-    // Collect all <p> elements inside the section
-    const paragraphs = section.querySelectorAll("p");
-
-    let total = 0;
-    paragraphs.forEach(p => {
-      const text = p.textContent.trim();
-      if (text.length > 0) {
-        total += text.split(/\s+/).length;
-      }
-    });
-
-    return total;
+  // Function to calculate and display word count for a specified section
+  function displayWordCount(sectionId, outputId) {
+    // Get the text content from the specified section
+    const text = document.getElementById(sectionId).textContent;
+    // Split text into words based on spaces and filter out any empty strings
+    const wordArray = text.trim().split(/\s+/);
+    // Count the words
+    const wordCount = wordArray.length;
+    // Return the word count for summing purposes
+    return wordCount;
   }
-
-  // Calculate and display total word count
+  // Function to calculate and display total word count from selected sections
   function displayTotalWordCount() {
+    // Calculate word count for each section and accumulate the total
     const introCount = countWordsInSection("Introduction");
     const socialCount = countWordsInSection("Social Issues");
     const physicalCount = countWordsInSection("Physical Issues");
     const mentalCount = countWordsInSection("Mental Issues");
-
-    const total = introCount + socialCount + physicalCount + mentalCount;
-
-    document.getElementById("totalWordCount").innerText =
-      `Total word count: ${total}`;
+    // Calculate the sum of all selected sections
+    const totalWordCount = introCount + socialCount + physicalCount + mentalCount;
+    // Display the total word count
+    document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
   }
-
-  // Run when page loads
+  // Run the function for specific sections and display total count when the page loads
   window.onload = displayTotalWordCount;
 </script>
   
