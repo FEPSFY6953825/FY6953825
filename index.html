@@ -236,10 +236,12 @@
   // Function to calculate and display total word count from selected sections
   function displayTotalWordCount() {
     // Calculate word count for each section and accumulate the total
-    const IntroductionCount = displayWordCount("Introduction_InText");
-    const AnalysisCount = displayWordCount("Analysis_InText");
+    const introCount = countWordsInSection("Introduction");
+    const socialCount = countWordsInSection("Social Issues");
+    const physicalCount = countWordsInSection("Physical Issues");
+    const mentalCount = countWordsInSection("Mental Issues");
     // Calculate the sum of all selected sections
-    const totalWordCount = IntroductionCount + AnalysisCount;
+    const totalWordCount = introCount + socialCount + physicalCount + mentalCount;
     // Display the total word count
     document.getElementById("totalWordCount").innerText = `Total word count: ${totalWordCount}`;
   }
